@@ -1,0 +1,10 @@
+{
+    "name": "Spotify Music History",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "mounts": [
+        "type=bind,source=${env:HOME}/.ssh,target=/home/vscode/.ssh,consistency=cached",
+        "type=bind,source=${env:HOME}/.gitconfig,target=/home/vscode/.gitconfig,consistency=cached"
+    ]
+}
