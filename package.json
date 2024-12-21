@@ -1,0 +1,11 @@
+{
+  "name": "spotify_music_history",
+  "version": "1.0.0",
+  "description": "Idea: download all music history from spotify privacy page, build a web app  where user would be able to upload the history.json file and the app would  return a visualization of his music history",
+  "main": "scripts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
