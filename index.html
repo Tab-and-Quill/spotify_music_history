@@ -3,14 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotify Music History</title>
-    <script src="scripts.js"></script>
+    <title>Wrap Your Lifetime Music</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+    <script defer src="scripts.js"></script>
 </head>
 <body>
-    <h1>Spotify Music History</h1>
-    <form id="fileInputForm">
-        <input type="file" name="history-file-input" id="historyFileInput" multiple>
+    <header>
+        <h1 class="mb-5">W.Y.L.M.</h1>
+        <h2 class="slogan mt-5">Wrap Your Lifetime Music</h2>
+        <form id="fileInputForm">
+            <label for="historyFileInput" class="btn btn-input-file">
+                <span id="labelValue">Upload files</span>
+            </label>
+            <input type="file" name="history-file-input" id="historyFileInput" class="invisibleInput" multiple />
+        </form>
         <div id="message"></div>
-    </form>
+    </header>
+    <div class="wrapper">
+        <aside class="aside-nav">
+            <div class="filter-bar-dropdown">
+                <div class="filter-bar-dropdown-label">
+                    <input id="filterYearInput" placeholder="Lifetime" type="text" class="table-filter filter-bar-dropdown-value" readonly />
+                    <span class="chevron">
+                        <span></span>
+                        <span></span>
+                    </span>
+                </div>
+                <div class="filter-bar-dropdown-content">
+                    <ul class="flex flex-column pt-15 pb-15 filter-bar-dropdown-content-list"></ul>
+                </div>
+            </div>
+            <nav>
+                <ul class="flex flex-column pt-15">
+                    <li class="nav-item pl-15 pt-10 pb-10 active">Songs</li>
+                    <li class="nav-item pl-15 pt-10 pb-10">Artists</li>
+                    <li class="nav-item pl-15 pt-10 pb-10">Podcasts</li>
+                </ul>
+            </nav>
+            
+        </aside>
+        <main>
+            <div id="data">
+                <div id="summaryData" class="summary-data-bar">
+                    <ul class="flex flex-row pl-15">
+                        <li class="pt-15 pb-15 mr-15">
+                            <label class="eyebrow text-uppercase mb-5">Music Hours</label>
+                            <span id="songHoursPlayedPlaceholder" class="summary-data-value">166.80</span>
+                        </li>
+                        <li class="pt-15 pb-15 mr-15">
+                            <label class="eyebrow text-uppercase mb-5">Unique Songs</label>
+                            <span id="distincSongsPlaceholder" class="summary-data-value">2584</span>
+                        </li>
+                        <li class="pt-15 pb-15 mr-15">
+                            <label class="eyebrow text-uppercase mb-5">Podcast Hours</label>
+                            <span id="podcastHoursPlayedPlaceholder" class="summary-data-value">84</span>
+                        </li>
+                        <li class="pt-15 pb-15">
+                            <label class="eyebrow text-uppercase mb-5">Unique Episodes</label>
+                            <span id="distinctPodcastsPlaceholder" class="summary-data-value">84</span>
+                        </li>
+                    </ul>
+                </div>
+                <div id="songTab" class="data-tab active">
+                    <nav id="songFilter" class="nav">
+                        <ul class="flex flex-row pl-15">
+                            <li class="pill-item active" data-value="10">Top 10</li>
+                            <li class="pill-item" data-value="30">Top 30</li>
+                            <li class="pill-item" data-value="50">Top 50</li>
+                        </ul>
+                    </nav>
+                    <ul id="songsList" class="flex flex-column">
+                        <li class="flex flex-row justify-content-between  pl-15 pr-15 pt-15 pb-15">
+                            <span class="data-item-wrapper">
+                                <span class="block mb-5">Song Name</span>
+                                <span class="eyebrow">Artist</span>
+                            </span>
+                            <span class="flex">
+                                <span class="mr-15">
+                                    <span class="eyebrow mb-5">Count</span>
+                                    <span>23</span>
+                                </span>
+                                <span>
+                                    <span class="eyebrow mb-5">Time</span>
+                                    <span class="time-value">6</span>
+                                </span>
+                            </span>
+                        </li>
+                        <li class="flex flex-row justify-content-between  pl-15 pr-15 pt-15 pb-15">
+                            <span class="data-item-wrapper">
+                                <span class="block mb-5">Song Name</span>
+                                <span class="eyebrow">Artist</span>
+                            </span>
+                            <span class="flex">
+                                <span class="mr-15">
+                                    <span class="eyebrow">Count</span>
+                                    <span>23</span>
+                                </span>
+                                <span>
+                                    <span class="eyebrow">Time</span>
+                                    <span class="time-value">6</span>
+                                </span>
+                            </span>
+                        </li>
+                        <li class="flex flex-row justify-content-between  pl-15 pr-15 pt-15 pb-15">
+                            <span class="data-item-wrapper">
+                                <span class="block mb-5">Song Name</span>
+                                <span class="eyebrow">Artist</span>
+                            </span>
+                            <span class="flex">
+                                <span class="mr-15">
+                                    <span class="eyebrow mb-5">Count</span>
+                                    <span>23</span>
+                                </span>
+                                <span>
+                                    <span class="eyebrow mb-5">Time</span>
+                                    <span class="time-value">6</span>
+                                </span>
+                            </span>
+                        </li>
+                        <li class="flex flex-row justify-content-between  pl-15 pr-15 pt-15 pb-15">
+                            <span class="data-item-wrapper">
+                                <span class="block mb-5">Song Name</span>
+                                <span class="eyebrow">Artist</span>
+                            </span>
+                            <span class="flex">
+                                <span class="mr-15">
+                                    <span class="eyebrow">Count</span>
+                                    <span>23</span>
+                                </span>
+                                <span>
+                                    <span class="eyebrow">Time</span>
+                                    <span class="time-value">6</span>
+                                </span>
+                            </span>
+                        </li>
+                        <li class="flex flex-row justify-content-between  pl-15 pr-15 pt-15 pb-15">
+                            <span class="data-item-wrapper">
+                                <span class="block mb-5">Song Name</span>
+                                <span class="eyebrow">Artist</span>
+                            </span>
+                            <span class="flex">
+                                <span class="mr-15">
+                                    <span class="eyebrow">Count</span>
+                                    <span>23</span>
+                                </span>
+                                <span>
+                                    <span class="eyebrow">Time</span>
+                                    <span>6</span>
+                                </span>
+                            </span>
+                        </li>
+                        <li class="flex flex-row justify-content-between  pl-15 pr-15 pt-15 pb-15">
+                            <span class="data-item-wrapper">
+                                <span>Song Name</span>
+                                <span class="eyebrow">Artist</span>
+                            </span>
+                            <span class="flex">
+                                <span class="mr-15">
+                                    <span class="eyebrow">Count</span>
+                                    <span>23</span>
+                                </span>
+                                <span>
+                                    <span class="eyebrow">Time</span>
+                                    <span class="time-value">6</span>
+                                </span>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div id="artistTab" class="data-tab">
+                    <nav id="artistFilter" class="nav">
+                        <ul class="flex flex-row pl-15">
+                            <li class="pill-item active" data-value="10">Top 10</li>
+                            <li class="pill-item" data-value="30">Top 30</li>
+                            <li class="pill-item" data-value="50">Top 50</li>
+                        </ul>
+                    </nav>
+                    <ul id="artistList"></ul>
+                </div>    
+                <div id="podcastTab" class="data-tab">
+                    <nav id="podcastFilter" class="nav">
+                        <ul class="flex flex-row pl-15">
+                            <li class="pill-item active" data-value="10">Top 10</li>
+                            <li class="pill-item" data-value="30">Top 30</li>
+                            <li class="pill-item" data-value="50">Top 50</li>
+                        </ul>
+                    </nav>
+                    <ul id="podcastList"></ul>
+                </div>
+            </div>
+        </main>
+        <aside class="aside-visuals">
+            <canvas class="" id="mainChart" height="300"></canvas>
+        </aside>
+    </div>
+    
+    <div id="notification"></div>
 </body>
 </html>
