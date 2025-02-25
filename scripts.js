@@ -405,7 +405,7 @@ const attachMainEvents = () => {
 const renderSideNav = () => {
     return `
         <aside class="aside-nav">
-            <div class="filter-bar-dropdown desktop-dropdown">
+            <div class="filter-bar-dropdown desktop-dropdown pl-15 pt-15">
                 <div class="filter-bar-dropdown-label">
                     <input id="filterYearInput" placeholder="Lifetime" type="text" class="table-filter filter-bar-dropdown-value" value=${dataStore.filterPeriod} readonly />
                     <span class="chevron">
@@ -506,26 +506,26 @@ const renderMain = () => {
             <div id="data">
                 <div id="summaryData" class="summary-data-bar">
                     <ul class="flex flex-row flex-wrap pl-15 pr-15">
-                        <li class="pt-15 pb-15 mr-15 summary-item">
+                        <li class="pt-15 mr-15 summary-item">
                             <label class="eyebrow text-uppercase mb-5">Music Hours</label>
                             <span id="songHoursPlayedPlaceholder" class="summary-data-value">${dataStore.totalSongHours.toFixed(0)}</span>
                         </li>
-                        <li class="pt-15 pb-15 mr-15 summary-item">
+                        <li class="pt-15 mr-15 summary-item">
                             <label class="eyebrow text-uppercase mb-5">Unique Songs</label>
                             <span id="distincSongsPlaceholder" class="summary-data-value">${dataStore.uniqueSongCount}</span>
                         </li>
-                        <li class="pt-15 pb-15 mr-15 summary-item">
+                        <li class="pt-15 mr-15 summary-item">
                             <label class="eyebrow text-uppercase mb-5">Podcast Hours</label>
                             <span id="podcastHoursPlayedPlaceholder" class="summary-data-value">${dataStore.totalPodcastHours.toFixed(0)}</span>
                         </li>
-                        <li class="pt-15 pb-15 summary-item">
+                        <li class="pt-15 summary-item">
                             <label class="eyebrow text-uppercase mb-5">Unique Episodes</label>
                             <span id="distinctPodcastsPlaceholder" class="summary-data-value">${dataStore.uniqueEpisodeCount}</span>
                         </li>
                     </ul>
                 </div>
                 <div id="songTab" class="data-tab ${appState.showTab === 'songs' ? 'active' : ''}">
-                    <nav id="songFilter" class="nav pb-15">
+                    <nav id="songFilter" class="nav pt-15 pb-15">
                         <ul class="flex flex-row pl-15">
                             <li class="pill-item ${dataStore.songFilter === 10 ? 'active' : ''}" data-value="10">Top 10</li>
                             <li class="pill-item ${dataStore.songFilter === 30 ? 'active' : ''}" data-value="30">Top 30</li>
@@ -571,7 +571,7 @@ const renderFullHeader = () => {
                 <input type="file" name="history-file-input" id="historyFileInput" class="invisibleInput" multiple />
             </form>
         </header>
-        <div class="filter-bar-dropdown mobile-dropdown">
+        <div class="filter-bar-dropdown mobile-dropdown pl-15">
             <div class="filter-bar-dropdown-label">
                 <input id="filterYearInput" placeholder="Lifetime" type="text" class="table-filter filter-bar-dropdown-value" value=${dataStore.filterPeriod} readonly />
                 <span class="chevron">
