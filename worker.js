@@ -9,8 +9,8 @@ let dbReady = new Promise((resolve, reject) => {
     ;
 
     const request = indexedDB.open("AppDB", 1);
-    console.log("test")
     request.onupgradeneeded = (event) => {
+
         const db = event.target.result;
         if (!db.objectStoreNames.contains("files")) {
             db.createObjectStore("files", { keyPath: "name" });
@@ -33,7 +33,29 @@ let dbReady = new Promise((resolve, reject) => {
 
 onmessage = async (event) => {
 
-    const { type, name, data } = event.data;
+    const { type, name, data } = event.data || {};
+
+    if (type === "checkData") {
+       
+        try {
+
+            const db = await dbReady; 
+            const transaction = db.transaction("files", "readonly");
+            const store = transaction.objectStore("files");
+            const countRequest = store.count();
+
+            countRequest.onsuccess = () => {
+                self.postMessage({ status: "fileCountCheck", results: countRequest.result > 0});
+            };
+
+            countRequest.onerror = () => {
+                self.postMessage({ status: "error", message: "Failed to check data"});
+            };
+
+        } catch (error) {
+            self.postMessage({ status: "error", message: error.message });
+        }
+    }
 
     if (type === "fetchKeys") {
         //Fetch all available keys (years and lifetime)
@@ -46,15 +68,15 @@ onmessage = async (event) => {
 
             keysRequest.onsuccess = () => {
                 const keys = keysRequest.result;
-                postMessage({ status: "keysFetched", results: keys });
+                self.postMessage({ status: "keysFetched", results: keys });
             };
 
             keysRequest.onerror = () => {
-                postMessage({ status: "error", message: "Failed to fetch keys."})
+                self.postMessage({ status: "error", message: "Failed to fetch keys."})
             };
 
         } catch (error) {
-            postMessage({ status: "error", message: error.message });
+            self.postMessage({ status: "error", message: error.message });
         }
     }
 
@@ -73,13 +95,13 @@ onmessage = async (event) => {
             });
 
             if (result) {
-                postMessage({ status: "aggregatedData", results: result });
+                self.postMessage({ status: "aggregatedData", results: result });
             } else {
-                postMessage({ status: "noAggregatedData" });
+                self.postMessage({ status: "noAggregatedData" });
             }
 
         } catch (error) {
-            postMessage({ status: "error", message: error });
+            self.postMessage({ status: "error", message: error });
         }
     
     };
@@ -91,7 +113,7 @@ onmessage = async (event) => {
         const request = store.add({ name, data });
 
         request.onsuccess = () => {
-            self.postMessage({ status: "fileAdded", file: name });
+            self.postMessage({ status: "fileAdded", results: true,  file: name });
         };
 
         request.onerror = () => {
@@ -100,7 +122,7 @@ onmessage = async (event) => {
 
     };
     
-    if (type === "checkAndAggregateFiles" || type === "allFilesAdded") {
+    if (type === "checkAndAggregateFiles") {
 
         const db = await dbReady;
         const transaction = db.transaction("files", "readonly");
@@ -118,7 +140,7 @@ onmessage = async (event) => {
             const aggregatedResults = await aggregateData(allData);
 
             await saveAggregatedData(aggregatedResults);
-            self.postMessage({ status: "aggregationComplete" });
+            self.postMessage({ status: "aggregationComplete", results: true });
 
         };
 

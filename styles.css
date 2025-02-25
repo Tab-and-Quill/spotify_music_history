@@ -1,43 +1,59 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
 body {
     background-color: rgb(255, 255, 255);
     font-family: Helvetica;
     font-weight: 400;
-    color: rgb(39, 39, 39)
+    color: rgb(39, 39, 39);
 }
 
-header {
-    margin-bottom: 30px;
+.header-compact {
+    height: 100vh;
 }
 
 h1 {
-    margin-top: 5px;
     font-weight: 400;
-    font-size: 5em;
+    font-size: 2em;
+    
 }
 
-h2.slogan {
-    font-family: 'Times New Roman', Times, serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 1.5em;
+h2.slogan { 
+    font-weight: 300;
+    font-size: 1.15em;
 }
 
-.wrapper {
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
-    border-top: 1px solid rgb(242, 242, 242);
-}
+/* .wrapper {
+    
+} */
 
 .aside-nav {
-    width: 15%;
-    max-width: 300px;
-    border-right: 1px solid rgb(242, 242, 242);
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    background: rgb(255, 255, 255);
+    z-index: 1;
 }
 
+main {
+    width: 100%;
+    position: absolute;
+    background: rgb(255, 255, 255);
+    z-index: 2;
+} 
+
 .aside-visuals {
-    width: 35%;
-    border-left: 1px solid rgb(242, 242, 242);
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    background: rgb(255, 255, 255);
+    z-index: 3;
+    transform: translateX(100vh);
 }
 
 ul {
@@ -55,9 +71,15 @@ ul li:hover {
 }
 
 .nav {
-    padding-top: 1em;
-    padding-bottom: 1em;
     border-bottom: 1px solid rgb(242, 242, 242);
+}
+
+.nav-bottom {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    z-index: 1000;
+    background: rgb(255, 255, 255);
 }
 
 .nav-item {
@@ -75,8 +97,9 @@ ul li:hover {
     padding-bottom: 8px;
     padding-left: 16px;
     padding-right: 16px;
-    padding-top: 10px;
+    padding-top: 8px;
     margin-right: 8px;
+    font-size: .9em;
 }
 
 .pill-item:hover {
@@ -106,8 +129,28 @@ ul li:hover {
     flex-direction: column;
 }
 
+.flex-gap-10 {
+    gap: 10px;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
 .justify-content-between {
     justify-content: space-between;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.justify-content-end {
+    justify-content: end;
+}
+
+.align-items-center {
+    align-items: center;
 }
 
 
@@ -116,8 +159,20 @@ ul li:hover {
     margin-right: 15px;
 }
 
+.ml-15 {
+    margin-left: 15px;
+}
+
 .mb-5 {
     margin-bottom: 5px;
+}
+
+.mb-15 {
+    margin-bottom: 15px;
+}
+
+.mb-30 {
+    margin-bottom: 30px;
 }
 
 .mt-5 {
@@ -126,6 +181,10 @@ ul li:hover {
 
 .mt-15 {
     margin-top: 15px;
+}
+
+.ml-5 {
+    margin-left: 5px;
 }
 
 /* paddings */
@@ -159,15 +218,10 @@ ul li:hover {
     display: inline-block;
 }
 
-main {
-    width: 50%;
-}
-
 .eyebrow {
     display: block;
     font-size: small;
-    font-weight: 300;
-    
+    font-weight: 400; 
 }
 
 .time-value { 
@@ -180,7 +234,11 @@ main {
 }
 
 .summary-data-value {
-    font-size: 2em;
+    font-size: 1.5em;
+}
+
+.summary-item {
+    min-width: 150px;
 }
 
 .filter-bar-dropdown {
@@ -200,6 +258,7 @@ main {
     border: none;
     pointer-events: none;
     font-size: 1.5em;
+    text-transform: capitalize;
 }
 
 .filter-bar-dropdown-content {
@@ -276,6 +335,11 @@ main {
     display: block;
 }
 
+.form-without-formatting {
+    padding: 0px;
+    margin: 0px;
+}
+
 .invisibleInput {
     width: 0.1px;
 	height: 0.1px;
@@ -286,11 +350,15 @@ main {
 }
 
 .btn {
+    display: block;
     color: white;
     background-color: black;
     padding: 8px 16px;
     border-radius: 50px;
     cursor: pointer;
+    border: none;
+    font-size: .9em;
+    height: 30px;
 }
 
 .btn:hover {
@@ -299,6 +367,190 @@ main {
 }
 
 .btn:focus {
-    outline: 1px solid rgb(141, 141, 248);
     outline: -webkit-focus-ring-color auto 1px;
+    outline: 1px solid rgb(141, 141, 248);
+}
+
+.btn-input-file {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.btn-close {
+    height: 35px;
+    width: 35px;
+    padding: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-close-container {
+    height: 15px;
+    width: 15px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-close-bar {
+    position: absolute;
+    height: 3px;
+    width: 15px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.btn-close-bar:nth-child(1) {
+    transform: rotate(45deg);
+}
+
+.btn-close-bar:nth-child(2) {
+    transform: rotate(-45deg);
+}
+
+.btn-close:hover .btn-close-bar {
+    background-color: black;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        visibility: hidden;
+    }
+    to {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 253, 253, 0.527); /* Semi-transparent black */
+    -webkit-backdrop-filter: rgba(255, 253, 253, 0.527);
+    backdrop-filter: blur(10px); /* Blurry effect */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.overlay-card {
+    background: rgb(231, 251, 250);
+    border-radius: 25px;
+    padding: 20px;
+    margin: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* .overlay-content {
+    
+} */
+
+.video-container {
+    width: 100%;
+    max-width: 1080px;
+    aspect-ratio: 16 / 9;
+    margin: 15px auto 0;
+    overflow: hidden;
+    border-radius: 25px;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+    background-color: black;
+}
+
+.scrollable-list {
+    overflow-y: auto;
+    max-height: 65vh;
+}
+
+.scrollable-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scrollbar-list::-webkit-track {
+    background: transparent;
+}
+
+.scrollable-list::-webkit-thumb {
+    background-color: rgba(0,0,0, 0.5);
+    border-radius: 4px;
+}
+
+.scrollable-list {
+    scrollbar-width: thin; /* options: auto, thin, none */
+    scrollbar-color: rgba(0, 0, 0, 0.5) transparent; /* thumb color then track color */
+}
+
+.desktop-dropdown {
+    display: none;
+}
+
+@media screen and (min-width: 1024px) { 
+
+    h1 {
+        font-size: 3.3em;
+    }
+
+    .btn {
+        font-size: 16px;
+        height: 40px;
+    }
+
+    .wrapper {
+        display: flex;
+        flex-direction: row;
+        overflow-x: hidden;
+        border-top: 1px solid rgb(242, 242, 242);
+    }
+
+
+    .aside-nav {
+        width: 15%;
+        max-width: 300px;
+        border-right: 1px solid rgb(242, 242, 242);
+    }
+    
+    .aside-visuals {
+        width: 35%;
+        border-left: 1px solid rgb(242, 242, 242);
+    }
+    
+    main {
+        width: 50%;
+    }
+
+    .desktop-dropdown {
+        display: block;
+    }
+
+    .mobile-dropdown {
+        display: none;
+    }
+
+    .eyebrow {
+        font-size: small;
+        font-weight: 300; 
+    }
+    .summary-data-value {
+        font-size: 2em;
+    }
+
+    .pill-item {
+        font-size: 1em;
+    }
 }
